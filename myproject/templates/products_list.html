@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Products{% endblock %}
+{% block page_css %}
+ <link rel="stylesheet" href="{% static 'css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Our Products</h2>
+
+    <div class="product-grid">
+        {% for product in products %}
+            <div class="product-card">
+                <a href="{{ product.get_url }}">
+
+                <!-- CHANGED: added wrapper for hover effect -->
+               <div class="product-image">
+    <!-- पहली इमेज दिखेगी हमेशा -->
+    <img class="main-img" src="{{ product.image.url }}" alt="{{ product.title }}">
+
+    <!-- Hover के लिए दूसरी इमेज (पहली अतिरिक्त इमेज) -->
+    {% if product.images.first %}
+        <div class="hover-img-container">
+            <img class="hover-img" src="{{ product.images.first.image.url }}" alt="{{ product.title }}">
+        </div>
+    {% endif %}
+</div>
+            </a>
+                <div class="product-name">{{ product.title }}</div>
+                <div class="product-price">₹{{ product.price }}</div>
+                <a href="{% url 'add_cart' product.id %}" class="btn">Add to Cart</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

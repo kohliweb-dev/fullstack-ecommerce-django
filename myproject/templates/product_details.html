@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {% endblock %}
+{% block page_css %}
+ <link rel="stylesheet" href="{% static 'css/product_details.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="product-page">
+
+    <!-- LEFT: Images -->
+    <div class="gallery">
+        <div class="main-image">
+            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+        </div>
+<div class="thumbnail-row">
+    <img src="{{ product.image.url }}">
+
+    {% for img in product.images.all %}
+        <img src="{{ img.image.url }}">
+    {% endfor %}
+</div>
+    </div>
+
+    <!-- RIGHT: Product Info -->
+    <div class="info">
+        <p class="tag">NEW SEASON</p>
+
+        <h1 class="title">{{ product.title }}</h1>
+
+        <p class="price">₹ {{ product.price }}</p>
+
+        <div class="sizes">
+    <span>SIZE</span>
+    <div class="size-options">
+        {% for size in product.sizes.all %}
+            
+            {% if size.stock > 0 %}
+                <button class="size-btn" data-id="{{ size.id }}">
+                    {{ size.size }}
+                </button>
+            {% else %}
+                <button class="size-btn disabled" disabled>
+                    {{ size.size }} (Out)
+                </button>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+</div>
+{% if product.stoke <= 0 %}
+    <h5>out of stock</h5>
+    {% else %}
+    {% if in_cart %}
+         <button class="add-btn">ADDedd</button>
+    {% else %}            
+       <button class="add-btn">ADD TO BAG</button>
+       {% endif %}
+    {% endif %}
+      <div class="desc">
+            <h3>Product Description</h3>
+            <p>{{ product.contant }}</p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/product_details.js' %}"></script>
+{% endblock %}

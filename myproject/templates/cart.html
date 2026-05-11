@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cart{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if cart_items %}
+
+<div class="cart-container">
+
+    <!-- LEFT SIDE -->
+    <div class="cart-items">
+
+        <div class="cart-header">
+            <span>PRODUCT</span>
+            <span>QUANTITY</span>
+            <span>PRICE</span>
+            <span></span>
+        </div>
+
+        {% for cart_item in cart_items %}
+        <div class="cart-row">
+
+            <div class="product">
+                <img src="{{ cart_item.c_product.image.url }}">
+                <div>
+                    <h4><a href="{{ cart_item.c_product.get_url }}">{{ cart_item.c_product.title }}</a></h4>
+                    <p>Color: Black</p>
+                    <p>Size: M</p>
+                </div>
+            </div>
+
+            <div class="quantity-box">
+                <a href="{% url 'remove_cart' cart_item.c_product.id %}">-</a>
+                <span>{{ cart_item.quantity }}</span>
+                <a href="{% url 'add_cart' cart_item.c_product.id %}">+</a>
+            </div>
+
+            <div class="price-box">
+                <h4>₹{{ cart_item.sub_total }}</h4>
+                <small>₹{{ cart_item.c_product.price }} each</small>
+            </div>
+
+            <a href="{% url 'remove_cart_item' cart_item.c_product.id %}"class="remove-btn">Remove</a>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="cart-summary">
+        <p>Total price: ₹{{ total }}</p>
+        <p>Tax: ₹{{ tax }}</p>
+        <h3>Total: ₹{{ grand_total }}</h3>
+
+        <button class="checkout-btn">Checkout</button>
+        <a href="{% url 'products_list' %}">
+            <button class="continue-btn">Continue Shopping</button>
+        </a>
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="empty-cart">
+    <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" alt="Empty Cart">
+    <h3>Your Cart is Empty</h3>
+    <p>Add some cool sneakers 🛒</p>
+    <a href="#" class="empty-cart-btn">
+        Continue Shopping
+    </a>
+</div>
+
+{% endif %}
+
+{% endblock %}

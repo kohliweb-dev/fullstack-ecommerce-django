@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} About{% endblock %}
+{% load static %}
+{% block page_css %}
+ <link rel="stylesheet" href="{% static 'css/home.css' %}">
+ <link rel="stylesheet" href="{% static 'css/products.css' %}">
+{% endblock %}
+{% block content %}
+
+    {% if banner %}
+ <div class='top-img'>
+    <img src="{{ banner.image.url }}" />
+        <div class="text-overlay">
+          <h1>{{ banner.contact }}</h1>
+          <p>{{ banner.title }}</p>
+          <a href="{% url 'products_list' %}">Explore Collection<i class="fa-solid fa-arrow-right-arrow-left"></i></a>
+        </div>
+        </div>
+        {% else %}
+        <p>banner ha hinhi</p>
+        {% endif %}
+{% endblock %}

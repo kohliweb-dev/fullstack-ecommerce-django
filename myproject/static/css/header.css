@@ -1,0 +1,299 @@
+/* --- Basic Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+/* --- Header Layout --- */
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 75px;
+    background: #ffffff;
+    color: #000000;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.main-logo img { 
+    height: auto ;
+    width: 100%; 
+}
+
+/* Desktop Nav */
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.main-header .Active {
+  color:rgb(230, 14, 14);
+ 
+}
+.mobile-only-link { display: none; } /* Hidden on Desktop */
+
+/* --- Action Buttons --- */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
+}
+.header-actions a{
+    text-decoration: none;
+    color: #000000;
+}
+
+.desktop-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* --- Search Dropdown Logic --- */
+.search-wrapper { position: relative; }
+.search-toggle, .nav-toggle { display: none; }
+
+.search-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    display: none;
+    min-width: 300px;
+}
+
+.search-dropdown input {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ddd;
+}
+
+.search-dropdown button {
+    padding: 8px 15px;
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.search-toggle:checked ~ .search-dropdown { display: block; }
+
+/*.user-menu {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* User Icon */
+.user-menu i {
+  font-size: none;
+  color: #000;
+  transition: 0.3s ease;
+}
+
+.user-menu i:hover {
+  color: rgb(241, 16, 16);
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: #fff;
+  min-width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  list-style: none;
+  
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+/* Show Dropdown on Hover */
+.user-menu:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown Items */
+.dropdown li {
+  width: 100%;
+}
+
+.dropdown li a {
+  display: block;
+  padding: 12px 18px;
+  text-decoration: none;
+  color: #222;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.dropdown li a:hover {
+  background: #f5f5f5;
+  color: rgb(241, 16, 16);
+}
+
+/* ===================== */
+/* Mobile Responsive */
+/* ===================== */
+
+@media (max-width: 768px) {
+
+  .dropdown {
+    min-width: 150px;
+    right: -10px;
+  }
+
+  .dropdown li a {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .user-menu i {
+    font-size: 22px;
+  }
+}
+
+/* This should be outside of any media queries */
+.nav-toggle-label {
+    display: none; /* This hides the 3-line icon on big screens */
+    cursor: pointer;
+}
+
+.nav-toggle {
+    display: none; /* This hides the actual checkbox */
+}
+
+
+
+/* ==========================================
+   RESPONSIVE LOGIC (992px and below)
+   ========================================== */
+@media screen and (max-width: 992px) {
+    /* Show Hamburger */
+    .nav-toggle-label { display: block; order: 1; cursor: pointer; }
+    .header-left { order: 2; }
+    .header-actions { order: 3; }
+
+    /* HIDE Account and Wishlist from main bar */
+    .desktop-actions { display: none; }
+
+    /* Side Menu Styling */
+    .main-nav {
+        position: fixed;
+        top: 75px;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background: #6a6868;
+        transition: 0.4s;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+    }
+
+    .nav-toggle:checked ~ .main-nav { left: 0; }
+
+    .main-nav ul { flex-direction: column; padding: 20px; }
+    
+    /* SHOW Account and Wishlist inside side menu */
+    .mobile-only-link { display: block; }
+    .log-sig a { display: flex;}
+    .main-nav li { border-bottom: 1px solid #ffffff; }
+    .main-nav a { padding: 15px 0; display: block; }
+
+    /* Search Dropdown full-width for mobile */
+    .search-dropdown {
+        position: fixed;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+
+
+
+
+/* Black Header */
+.top-header {
+    background: #000000;
+    color: #fcfcfc;
+    padding: 8px 0;
+}
+
+/* Center container (60% width) */
+.marquee-wrapper {
+    width: 60%;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Moving text */
+.marquee-content {
+    display: flex;
+    width: max-content;
+    animation: scrollLoop 15s linear infinite;
+}
+
+/* spacing between repeats */
+.marquee-content span {
+    padding-right: 50px;
+}
+.marquee-content p {
+ font-family: 'Libre Franklin', sans-serif;
+
+}
+
+/* Pause on hover */
+.marquee-wrapper:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+/* Animation */
+@keyframes scrollLoop {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .marquee-wrapper {
+        width: 90%;
+    }
+
+    .marquee-content {
+        animation-duration: 9s;
+        font-size: 10px;
+    }
+}

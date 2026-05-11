@@ -1,0 +1,89 @@
+<div class="top-header">
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            <span><p>{% for offers in offeres %}
+   
+                 {{ offers.text }}
+
+                 {% endfor %}</p>
+            </span>
+            <span><p>{% for offers in offeres %}
+    {{ offers.text }}
+                  {% endfor %}</p>
+            </span>
+        </div>
+    </div>
+</div>
+<header class="main-header">
+    
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">
+        <i class="fa-solid fa-bars fa-lg"></i>
+    </label>
+
+    <div class="header-left">
+        <a href="/" class="main-logo">
+            <img src="https://modave.presslayouts.com/wp-content/themes/modave/assets/images/logo.svg" alt="Logo">
+        </a>
+    </div>
+
+    <nav class="main-nav">
+        <ul>
+            {% if user.is_authenticated %}
+                <li class="mobile-only-link">
+                    <a href="{% url 'dashboard' %}"><i class="fa-regular fa-circle-user"></i> Account ({{ user.username }})</a>
+                </li>
+            
+            {% else %}
+                <li class="mobile-only-link" class="log-sig"><a href="{% url 'login' %}">Login</a><a href="{% url 'signup' %}"> Sign Up</a></li>
+            {% endif %}
+             <li><a href="/" class="{% if request.path == '/' %}Active{% endif %}">Home <i class="fa-solid fa-angle-down fa-xs"></i></a></li>
+             <li><a href="/about" class="{% if request.path == '/about/' %}Active{% endif %}">About <i class="fa-solid fa-angle-down fa-xs"></i></a></li>
+             <li><a href="/products" class="{% if request.path == '/products/' %}Active{% endif %}">Products <i class="fa-solid fa-angle-down fa-xs"></i></a></li>
+             <li><a href="/blog" class="{% if request.path == '/blog/' %}Active{% endif %}">Blog <i class="fa-solid fa-angle-down fa-xs"></i></a></li>
+             <li><a href="/contact" class="{% if request.path == '/contact/' %}Active{% endif %}">Contact <i class="fa-solid fa-angle-down fa-xs"></i></a></li>
+
+            
+            <li class="mobile-only-link"><hr></li>
+            <li class="mobile-only-link">
+                <a href="/wishlist"><i class="fa-regular fa-heart"></i> Wishlist</a>
+            </li>
+             <li class="mobile-only-link"><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="header-actions">
+        
+        <div class="search-wrapper">
+            <input type="checkbox" id="search-toggle" class="search-toggle">
+            <label for="search-toggle" class="search-icon-btn">
+                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+            </label>
+            <div class="search-dropdown">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search products...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="desktop-actions">
+            <a href="/wishlist" class="{% if request.path == '/wishlist/' %}Active{% endif %}"><i class="fa-regular fa-heart fa-lg"></i></a>
+            <div class="user-menu">
+                <i class="fa-regular fa-circle-user fa-lg"></i>
+                <ul class="dropdown">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <a href="/cart" class="{% if request.path == '/cart/' %}Active{% endif %}"><i class="fa-solid fa-bag-shopping fa-lg"></i></a>
+    </div>
+</header>
+
+

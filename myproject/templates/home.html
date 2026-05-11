@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% load static %}
+{% block page_css %}
+ <link rel="stylesheet" href="{% static 'css/home.css' %}">
+ <link rel="stylesheet" href="{% static 'css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    {% if banner %}
+ <div class='top-img'>
+    <img src="{{ banner.image.url }}" />
+        <div class="text-overlay">
+          <h1>{{ banner.contact }}</h1>
+          <p>{{ banner.title }}</p>
+          <a href="{% url 'products_list' %}">Explore Collection<i class="fa-solid fa-arrow-right-arrow-left"></i></a>
+        </div>
+        </div>
+        {% endif %}
+
+<section>
+   <h2 class="collection-title">Our Collection</h2>
+
+    <div class="category-row">
+
+    <a href="{% url 'products_by_gender' 'mens' %}" class="category-box">
+        <img src="https://m.media-amazon.com/images/I/71yyE1XUp1L._AC_UY1000_.jpg" alt="Men">
+        <div class="overlay">
+            
+            <button>Men</button>
+        </div>
+    </a>
+
+    <a href="{% url 'products_by_gender' 'womens' %}"class="category-box">
+        <img src="https://www.brit.co/media-library/adidas-sneakers.jpg?id=51727419&width=400&height=500" alt="Women">
+        <div class="overlay">
+            <button>Women</button>
+        </div>
+    </a>
+
+    <a href="{% url 'products_by_gender' 'kids' %}" class="category-box">
+        <img src="https://media.istockphoto.com/id/1171197401/photo/young-children-do-cardio-exercises.jpg?s=612x612&w=0&k=20&c=Si6sSHY0HiWBCsfriZ8XoIb6xu2TmNoT8-sQ6MJ8w54=" alt="Kids">
+        <div class="overlay">
+            
+            <button>Kids</button>
+        </div>
+    </a>
+
+</div></section>
+
+<div class="container">
+    <h2>Our Products</h2>
+
+    <div class="product-grid">
+        {% for product in all_products %}
+            <div class="product-card">
+                <a href="{{ product.get_url }}">
+
+                <!-- CHANGED: added wrapper for hover effect -->
+               <div class="product-image">
+    <!-- पहली इमेज दिखेगी हमेशा -->
+    <img class="main-img" src="{{ product.image.url }}" alt="{{ product.title }}">
+
+    <!-- Hover के लिए दूसरी इमेज (पहली अतिरिक्त इमेज) -->
+    {% if product.images.first %}
+        <div class="hover-img-container">
+            <img class="hover-img" src="{{ product.images.first.image.url }}" alt="{{ product.title }}">
+        </div>
+    {% endif %}
+</div>
+            </a>
+                <div class="product-name">{{ product.title }}</div>
+                <div class="product-price">₹{{ product.price }}</div>
+                <a href="{% url 'add_cart' product.id %}" class="btn">Add to Cart</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

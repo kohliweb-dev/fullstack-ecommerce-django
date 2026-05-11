@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ blog.title }}{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="blog-container">
+    <div class="blog-card">
+        <img src="{{ blog.images.url }}" alt="{{ blog.title }}" class="blog-image">
+
+        <div class="blog-content">
+          
+
+            <h1 class="blog-title">{{ blog.title }}</h1>
+
+            <div class="blog-meta">
+                Published by Admin
+            </div>
+
+            <div class="blog-text">
+                {{ blog.content|linebreaks }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
