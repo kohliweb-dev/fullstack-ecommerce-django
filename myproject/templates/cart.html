@@ -30,23 +30,30 @@
                 <img src="{{ cart_item.c_product.image.url }}">
                 <div>
                     <h4><a href="{{ cart_item.c_product.get_url }}">{{ cart_item.c_product.title }}</a></h4>
-                    <p>Color: Black</p>
-                    <p>Size: M</p>
+                    <p>Size: {{ cart_item.size.size }}</p>
                 </div>
             </div>
 
-            <div class="quantity-box">
-                <a href="{% url 'remove_cart' cart_item.c_product.id %}">-</a>
-                <span>{{ cart_item.quantity }}</span>
-                <a href="{% url 'add_cart' cart_item.c_product.id %}">+</a>
-            </div>
+           <div class="quantity-box">
+
+    <a href="{% url 'remove_cart' cart_item.c_product.id %}?size={{ cart_item.size.id }}">
+        -
+    </a>
+
+    <span>{{ cart_item.quantity }}</span>
+
+    <a href="{% url 'add_cart' cart_item.c_product.id %}?size={{ cart_item.size.id }}">
+        +
+    </a>
+
+</div>
 
             <div class="price-box">
                 <h4>₹{{ cart_item.sub_total }}</h4>
                 <small>₹{{ cart_item.c_product.price }} each</small>
             </div>
 
-            <a href="{% url 'remove_cart_item' cart_item.c_product.id %}"class="remove-btn">Remove</a>
+            <a href="{% url 'remove_cart_item' cart_item.c_product.id %}?size={{ cart_item.size.id }}"class="remove-btn">Remove</a>
 
         </div>
         {% endfor %}

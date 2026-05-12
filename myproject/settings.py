@@ -75,6 +75,7 @@ TEMPLATES = [
                 "category.Context_processors.global_offers",
                 "category.Context_processors.dynamic_banner",
                 'category.Context_processors.global_products',
+                'cart.context_processors.counter',
 
             ],
         },

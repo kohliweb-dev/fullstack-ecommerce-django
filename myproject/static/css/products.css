@@ -37,7 +37,7 @@ h2 {
 .product-image {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 250px;
     overflow: hidden;
     border-radius: 8px;
 }
@@ -86,7 +86,7 @@ h2 {
 
 /* Product Price */
 .product-price {
-    color: green;
+    color: rgb(0, 0, 0);
     font-size: 15px;
     margin-bottom: 10px;
 }
@@ -95,7 +95,7 @@ h2 {
 .btn {
     display: inline-block;
     text-decoration: none;
-    background: #007bff;
+    background: #000000;
     color: white;
     padding: 8px 14px;
     border-radius: 6px;
@@ -104,7 +104,8 @@ h2 {
 }
 
 .btn:hover {
-    background: #0056b3;
+    background: #2ccb0c;
+    color: #000000;
 }
 
 /* Tablet */

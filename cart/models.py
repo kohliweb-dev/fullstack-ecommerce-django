@@ -1,5 +1,5 @@
 from django.db import models
-from store.models import Product
+from store.models import Product,ShoeSize
 
 class Cart(models.Model):
     cart_id = models.CharField(max_length=200,blank=True)
@@ -16,6 +16,13 @@ class Cartitem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     quantity  = models.IntegerField()
     is_active =  models.BooleanField(default=True )
+    size = models.ForeignKey(
+        ShoeSize,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
 
     def sub_total(self):
         return self.c_product.price * self.quantity 

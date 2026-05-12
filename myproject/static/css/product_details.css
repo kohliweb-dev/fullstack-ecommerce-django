@@ -107,6 +107,11 @@ body {
     line-height: 1.6;
 }
 
+.size-options button.selected{
+    background: black;
+    color: white;
+    border: 1px solid black;
+}
 
 /* =========================
    TABLET (max-width: 992px)

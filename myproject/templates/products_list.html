@@ -4,6 +4,7 @@
 {% block title %} Products{% endblock %}
 {% block page_css %}
  <link rel="stylesheet" href="{% static 'css/products.css' %}">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -30,9 +31,44 @@
             </a>
                 <div class="product-name">{{ product.title }}</div>
                 <div class="product-price">₹{{ product.price }}</div>
-                <a href="{% url 'add_cart' product.id %}" class="btn">Add to Cart</a>
+                <a href="{% url 'add_cart' product.id %}" class="btn">Add</a>
             </div>
         {% endfor %}
     </div>
+</div>
+
+
+<!-- brand logo -->
+<div class="brand-slider">
+
+    <div class="brand-track">
+
+        <img src="https://i.pinimg.com/736x/d7/70/b9/d770b96ea3d43efbf5bdac06a0d589a8.jpg" alt="Nike">
+
+        <img src="https://i.pinimg.com/736x/85/e8/ac/85e8ac7e34fc40846fedd80dee7bec86.jpg" alt="Adidas">
+
+        <img src="https://i.pinimg.com/736x/f9/4b/5b/f94b5bd712f3c3590f0dd52bf1c39840.jpg" alt="Puma">
+
+        <img src="https://i.pinimg.com/1200x/3b/55/da/3b55daef4d5e9fe19cb3055194bb2a3c.jpg" alt="New Balance">
+
+        <img src="https://i.pinimg.com/1200x/a5/09/ce/a509ce51391852498f89d9d5df633cbd.jpg" alt="Converse">
+
+
+        <!-- Duplicate for smooth loop -->
+
+        <img src="https://i.pinimg.com/736x/d7/70/b9/d770b96ea3d43efbf5bdac06a0d589a8.jpg" alt="Nike">
+
+        <img src="https://i.pinimg.com/736x/85/e8/ac/85e8ac7e34fc40846fedd80dee7bec86.jpg" alt="Adidas">
+
+        <img src="https://i.pinimg.com/736x/f9/4b/5b/f94b5bd712f3c3590f0dd52bf1c39840.jpg" alt="Puma">
+
+        <img src="https://i.pinimg.com/1200x/3b/55/da/3b55daef4d5e9fe19cb3055194bb2a3c.jpg" alt="New Balance">
+
+        <img src="https://i.pinimg.com/1200x/a5/09/ce/a509ce51391852498f89d9d5df633cbd.jpg" alt="Converse">
+
+
+
+    </div>
+
 </div>
 {% endblock %}

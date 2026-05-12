@@ -1,18 +1,25 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let selectedSize = null;
+const sizeButtons = document.querySelectorAll(".size-btn");
+const sizeInput = document.getElementById("selected-size");
 
-    document.querySelectorAll('.size-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.size-btn')
-                .forEach(b => b.classList.remove('active'));
+sizeButtons.forEach(button => {
 
-            this.classList.add('active');
-            selectedSize = this.getAttribute('data-id');
+    button.addEventListener("click", function () {
 
-            console.log("Selected Size:", selectedSize);
+        // remove selected from all
+        sizeButtons.forEach(btn => {
+            btn.classList.remove("selected");
         });
+
+        // add selected
+        this.classList.add("selected");
+
+        // hidden input value
+        sizeInput.value = this.dataset.size;
+
     });
+
 });
 
-
-
+function changeImage(element) {
+    document.getElementById("mainImage").src = element.src;
+}

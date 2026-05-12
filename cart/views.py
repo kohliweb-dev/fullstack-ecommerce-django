@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Cart,Cartitem
-from store.models import Product
+from store.models import Product,ShoeSize
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 def _cart_id(request):
     cart = request.session.session_key
@@ -10,35 +11,60 @@ def _cart_id(request):
     return cart
     
 
-def add_cart(request,product_id):
-    c_product = Product.objects.get(id= product_id)
-    try:
-        cart = Cart.objects.get(cart_id = _cart_id(request))
-    except Cart.DoesNotExist:
-        cart = Cart.objects.create(
-            cart_id = _cart_id(request)
 
-        )   
-    cart.save()
-    
+def add_cart(request, product_id):
+
+    c_product = get_object_or_404(Product, id=product_id)
+
+    size_id = request.GET.get('size')
+
+    # if size not selected
+    if not size_id:
+        messages.error(request, "Please select a shoe size.")
+        return redirect(request.META.get('HTTP_REFERER'))
+
+    selected_size = get_object_or_404(ShoeSize, id=size_id)
+
     try:
-        cart_item = Cartitem.objects.get(c_product=c_product,cart=cart)
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+
+    except Cart.DoesNotExist:
+
+        cart = Cart.objects.create(
+            cart_id=_cart_id(request)
+        )
+
+    cart.save()
+
+    try:
+
+        cart_item = Cartitem.objects.get(
+            c_product=c_product,
+            cart=cart,
+            size=selected_size
+        )
+
         cart_item.quantity += 1
         cart_item.save()
+
     except Cartitem.DoesNotExist:
+
         cart_item = Cartitem.objects.create(
             c_product=c_product,
-            quantity =1,
             cart=cart,
-        )    
+            size=selected_size,
+            quantity=1
+        )
+
         cart_item.save()
-   
+
     return redirect('cart')
 
 def remove_cart(request,product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     c_product=  get_object_or_404(Product,id=product_id)
-    cart_item = Cartitem.objects.get(c_product=c_product,cart=cart)
+    size_id = request.GET.get('size')
+    cart_item = Cartitem.objects.get(c_product=c_product,cart=cart,size_id=size_id)
     if cart_item.quantity > 1:
         cart_item.quantity -= 1
         cart_item.save()
@@ -52,7 +78,8 @@ def remove_cart(request,product_id):
 def remove_cart_item(request,product_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     c_product=  get_object_or_404(Product,id=product_id)
-    cart_item = Cartitem.objects.get(c_product=c_product,cart=cart)
+    size_id = request.GET.get('size')
+    cart_item = Cartitem.objects.get(c_product=c_product,cart=cart ,size_id=size_id)
     cart_item.delete()
     return redirect('cart')
 

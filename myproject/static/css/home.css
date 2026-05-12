@@ -59,7 +59,200 @@
   background-color: rgb(230, 14, 14);
   color: #fff;
 }
+  
 
+
+/* the div css start haear                 <---------- */
+
+
+.promo-banner{
+  margin-top: 40px;
+    position:relative;
+    width:100%;
+    height:500px;
+    overflow:hidden;
+    margin-bottom: 40px;
+}
+
+.promo-banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* Dark overlay */
+.promo-banner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+}
+
+/* Center Text */
+.banner-content{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:#fff;
+    z-index:2;
+    width:90%;
+}
+
+.banner-content h1{
+    font-size:55px;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+.banner-content p{
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+.banner-content a{
+    display:inline-block;
+    padding:14px 28px;
+    background:#fff;
+    color:#000;
+    text-decoration:none;
+    font-weight:600;
+    border-radius:40px;
+    transition:0.3s;
+}
+
+.banner-content a:hover{
+    background:#ec1616cd;
+    color:#fff;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media(max-width:992px){
+
+    .promo-banner{
+        height:400px;
+    }
+
+    .banner-content h1{
+        font-size:40px;
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:576px){
+
+    .promo-banner{
+        height:300px;
+        border-radius:8px;
+    }
+
+    .banner-content h1{
+        font-size:26px;
+    }
+
+    .banner-content p{
+        font-size:14px;
+    }
+
+    .banner-content a{
+        padding:10px 20px;
+        font-size:14px;
+    }
+
+}
+
+
+
+/* review divss section start from here */
+
+.reviews-section{
+    width:100%;
+    display:flex;
+    gap:25px;
+    padding:60px 5%;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.review-card{
+    flex:1;
+    min-width:280px;
+    max-width:350px;
+    background:#fff;
+    padding:30px 25px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    text-align:center;
+    transition:0.3s ease;
+}
+
+.review-card:hover{
+    transform:translateY(-8px);
+}
+
+.review-card img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:18px;
+}
+
+.review-card h3{
+    font-size:20px;
+    margin-bottom:12px;
+}
+
+.review-card p{
+    font-size:15px;
+    line-height:1.7;
+    color:#666;
+    margin-bottom:15px;
+}
+
+.review-card span{
+    color:#f5a623;
+    font-size:20px;
+    letter-spacing:2px;
+}
+
+/* =========================
+   TABLET
+========================= */
+@media(max-width:992px){
+
+    .reviews-section{
+        gap:20px;
+    }
+
+    .review-card{
+        min-width:250px;
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:576px){
+
+    .reviews-section{
+        padding:40px 20px;
+    }
+
+    .review-card{
+        width:100%;
+        max-width:100%;
+    }
+
+}
 /* ========================= */
 /* Tablet */
 /* ========================= */
@@ -121,8 +314,65 @@
   }
 }
 
+/* logoes     <----------- */
 
+.brand-slider{
+    width:100%;
+    overflow:hidden;
+    background:#fff;
+    padding:35px 0;
+    position:relative;
+}
 
+.brand-track{
+    display:flex;
+    align-items:center;
+    gap:70px;
+    width:max-content;
+    animation:scrollBrands 18s linear infinite;
+}
+
+.brand-track img{
+    width:120px;
+    height:100px;
+    object-fit:contain;
+    opacity:0.8;
+    transition:0.3s ease;
+}
+
+.brand-track img:hover{
+    opacity:1;
+    transform:scale(1.08);
+}
+
+/* Animation */
+@keyframes scrollBrands{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(-50%);
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:576px){
+
+    .brand-track{
+        gap:40px;
+    }
+
+    .brand-track img{
+        width:100px;
+        height:60px;
+    }
+
+}
 
 
 

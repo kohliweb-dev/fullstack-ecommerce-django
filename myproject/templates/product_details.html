@@ -1,71 +1,122 @@
-
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} {% endblock %}
+
+{% block title %}{% endblock %}
+
 {% block page_css %}
- <link rel="stylesheet" href="{% static 'css/product_details.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_details.css' %}">
 {% endblock %}
 
-
 {% block content %}
+
 <div class="product-page">
 
-    <!-- LEFT: Images -->
+    <!-- LEFT -->
     <div class="gallery">
+
         <div class="main-image">
-            <img src="{{ product.image.url }}" alt="{{ product.title }}">
-        </div>
-<div class="thumbnail-row">
-    <img src="{{ product.image.url }}">
+    <img id="mainImage" src="{{ product.image.url }}" alt="{{ product.title }}">
+</div>
+        <div class="thumbnail-row">
+
+    <img src="{{ product.image.url }}" onclick="changeImage(this)">
 
     {% for img in product.images.all %}
-        <img src="{{ img.image.url }}">
+        <img src="{{ img.image.url }}" onclick="changeImage(this)">
     {% endfor %}
+
 </div>
+
     </div>
 
-    <!-- RIGHT: Product Info -->
+    <!-- RIGHT -->
     <div class="info">
+
         <p class="tag">NEW SEASON</p>
 
         <h1 class="title">{{ product.title }}</h1>
 
         <p class="price">₹ {{ product.price }}</p>
 
-        <div class="sizes">
-    <span>SIZE</span>
-    <div class="size-options">
-        {% for size in product.sizes.all %}
-            
-            {% if size.stock > 0 %}
-                <button class="size-btn" data-id="{{ size.id }}">
-                    {{ size.size }}
-                </button>
+        <form action="{% url 'add_cart' product.id %}" method="GET">
+
+            <!-- SIZE -->
+            <div class="sizes">
+
+                <span>SIZE</span>
+
+                <div class="size-options">
+
+                    {% for size in product.sizes.all %}
+
+                        {% if size.stock > 0 %}
+
+                            <button
+                                type="button"
+                                class="size-btn"
+                                data-size="{{ size.id }}"
+                            >
+                                {{ size.size }}
+                            </button>
+
+                        {% else %}
+
+                            <button
+                                type="button"
+                                class="size-btn disabled"
+                                disabled
+                            >
+                                {{ size.size }} (Out)
+                            </button>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+                <!-- hidden input -->
+                <input type="hidden" name="size" id="selected-size">
+
+            </div>
+
+            {% if product.stoke <= 0 %}
+
+                <h5>Out of stock</h5>
+
             {% else %}
-                <button class="size-btn disabled" disabled>
-                    {{ size.size }} (Out)
-                </button>
+
+                {% if in_cart %}
+
+                    <button class="add-btn">
+                        ADDED
+                    </button>
+
+                {% else %}
+
+                    <button type="submit" class="add-btn">
+                        ADD TO BAG
+                    </button>
+
+                {% endif %}
+
             {% endif %}
 
-        {% endfor %}
-    </div>
-</div>
-{% if product.stoke <= 0 %}
-    <h5>out of stock</h5>
-    {% else %}
-    {% if in_cart %}
-         <button class="add-btn">ADDedd</button>
-    {% else %}            
-       <button class="add-btn">ADD TO BAG</button>
-       {% endif %}
-    {% endif %}
-      <div class="desc">
+        </form>
+
+        <!-- DESCRIPTION -->
+        <div class="desc">
+
             <h3>Product Description</h3>
+
             <p>{{ product.contant }}</p>
+
         </div>
+
     </div>
 
 </div>
+
 {% endblock %}
 
 {% block extra_js %}

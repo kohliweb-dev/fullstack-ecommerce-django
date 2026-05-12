@@ -72,11 +72,105 @@
             </a>
                 <div class="product-name">{{ product.title }}</div>
                 <div class="product-price">₹{{ product.price }}</div>
-                <a href="{% url 'add_cart' product.id %}" class="btn">Add to Cart</a>
+                <a href="{% url 'add_cart' product.id %}" class="btn">Add</a>
             </div>
+            
         {% endfor %}
+
+    </div>
+    <a href="{% url 'products_list' %}" class="view-all-btn">
+    View All Products
+</a>
+</div>
+
+<div class="promo-banner">
+    <img src="https://cdn.runrepeat.com/storage/gallery/buying_guide_primary/66/66-best-sneakers-001-15275042-main.jpg" alt="Banner">
+
+    <div class="banner-content">
+        <h1>NEW SNEAKER COLLECTION</h1>
+        <p>Discover the latest streetwear trends</p>
+
+        <a href="{% url 'products_list' %}">
+            Shop Now
+        </a>
     </div>
 </div>
 
+<!-- reviews boxes -->
+ <div class="reviews-section">
+
+    <div class="review-card">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+
+        <h3>Rahul Sharma</h3>
+
+        <p>
+            Amazing quality sneakers. Delivery was super fast and fitting is perfect.
+        </p>
+
+        <span>★★★★★</span>
+    </div>
+
+    <div class="review-card">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+
+        <h3>Priya Verma</h3>
+
+        <p>
+            Loved the design and comfort. Looks premium and stylish.
+        </p>
+
+        <span>★★★★★</span>
+    </div>
+
+    <div class="review-card">
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User">
+
+        <h3>Aman Khanna</h3>
+
+        <p>
+            One of the best sneaker stores online. Totally recommended.
+        </p>
+
+        <span>★★★★★</span>
+    </div>
+
+</div>
+
+
+
+
+<div class="brand-slider">
+
+    <div class="brand-track">
+
+        <img src="https://i.pinimg.com/736x/d7/70/b9/d770b96ea3d43efbf5bdac06a0d589a8.jpg" alt="Nike">
+
+        <img src="https://i.pinimg.com/736x/85/e8/ac/85e8ac7e34fc40846fedd80dee7bec86.jpg" alt="Adidas">
+
+        <img src="https://i.pinimg.com/736x/f9/4b/5b/f94b5bd712f3c3590f0dd52bf1c39840.jpg" alt="Puma">
+
+        <img src="https://i.pinimg.com/1200x/3b/55/da/3b55daef4d5e9fe19cb3055194bb2a3c.jpg" alt="New Balance">
+
+        <img src="https://i.pinimg.com/1200x/a5/09/ce/a509ce51391852498f89d9d5df633cbd.jpg" alt="Converse">
+
+
+        <!-- Duplicate for smooth loop -->
+
+        <img src="https://i.pinimg.com/736x/d7/70/b9/d770b96ea3d43efbf5bdac06a0d589a8.jpg" alt="Nike">
+
+        <img src="https://i.pinimg.com/736x/85/e8/ac/85e8ac7e34fc40846fedd80dee7bec86.jpg" alt="Adidas">
+
+        <img src="https://i.pinimg.com/736x/f9/4b/5b/f94b5bd712f3c3590f0dd52bf1c39840.jpg" alt="Puma">
+
+        <img src="https://i.pinimg.com/1200x/3b/55/da/3b55daef4d5e9fe19cb3055194bb2a3c.jpg" alt="New Balance">
+
+        <img src="https://i.pinimg.com/1200x/a5/09/ce/a509ce51391852498f89d9d5df633cbd.jpg" alt="Converse">
+
+
+
+    </div>
+
+</div>
 
 {% endblock %}

@@ -18,6 +18,8 @@
     position: sticky;
     top: 0;
     z-index: 999;
+     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    
 }
 
 .main-logo img { 
@@ -92,6 +94,7 @@
     color: #fff;
     border: none;
     cursor: pointer;
+    
 }
 
 .search-toggle:checked ~ .search-dropdown { display: block; }
@@ -158,6 +161,33 @@
   background: #f5f5f5;
   color: rgb(241, 16, 16);
 }
+
+
+
+/* counter */
+.cart-icon{
+    position: relative;
+    display: inline-block;
+}
+
+.cart-count{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: rgba(255, 76, 76, 0.783);
+    color: white;
+    font-size: 11px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+
+
 
 /* ===================== */
 /* Mobile Responsive */
