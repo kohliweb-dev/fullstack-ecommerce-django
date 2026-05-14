@@ -46,10 +46,10 @@ This project allows users to browse products, view product details, add items to
 ![Homepage](screenshot/home_page.png)
 
 ## Product Page
-![Product](screenshot/product_page.png)
+![Product](screenshot/products_page.png)
 
-## Cart Page
-![Cart](screenshot/cart_page.png)
+## blog Page
+![blog](screenshot/blog_page.png)
 
 ## login/signup page
 ![account](screenshot/login_page.png)
